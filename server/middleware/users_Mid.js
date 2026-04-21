@@ -92,6 +92,9 @@ async function UpdateUser(req, res, next) {
 async function DeleteUser(req, res, next) {
 
     let id = req.params.id || -1;
+    if (id < 0) {
+        return res.status(500).json({ status: "ERROR", message: "id is not valid" });
+    }
 
     let Query = `DELETE FROM ${tableName} WHERE id=?`;
 
@@ -99,9 +102,6 @@ async function DeleteUser(req, res, next) {
 
     res.ok = false;
 
-    if (id < 0) {
-        return res.status(500).json({ status: "ERROR", message: "id is not valid" });
-    }
     let rows = await GenObj_Mid.QueryExecSimpleReply(Query, values);
     if (rows === false) {
         res.err = "something went wrong";
