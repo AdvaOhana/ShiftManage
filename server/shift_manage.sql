@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`email` varchar(255) NOT NULL UNIQUE,
 	`password` varchar(255) NOT NULL,
 	`role` varchar(255) NOT NULL,
-	`craetedAt` timestamp DEFAULT CURRENT_TIMESTAMP,
+	`createdAt` timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 );
 
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 CREATE TABLE IF NOT EXISTS `unavailability` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`user_id` int NOT NULL,
-	`start` time NOT NULL,
-	`end` time NOT NULL,
+	`start` datetime NOT NULL,
+	`end` datetime NOT NULL,
 	`createdAt` timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 );
