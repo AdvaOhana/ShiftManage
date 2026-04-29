@@ -1,4 +1,6 @@
+import { colors } from '@mui/material';
 import { ConfirmDialogColors } from '../theme_params.jsx';
+import { Typography } from '@mui/material';
 
 /**
  * Creates a standardized confirmation dialog configuration
@@ -25,10 +27,10 @@ export const createConfirmConfig = ({
         confirmationText,
         cancellationText,
         dialogProps: {
-            PaperProps: {
-                sx: {
+            sx: {
+                '& .MuiPaper-root': {
                     backgroundColor: colors.backgroundColor,
-                },
+                }
             }
         },
         confirmationButtonProps: {
@@ -65,12 +67,15 @@ export const createDeleteConfirmConfig = (entityName, itemName) => {
         title: 'נא לאשר מחיקה',
         description: (
             <>
-                <p><b>
-                    האם אתה בטוח שברצונך למחוק את {entityName} {itemName}?
-                </b></p>
-                <p>
+                <Typography component="span">
+                    <b>
+                        האם אתה בטוח שברצונך למחוק את {entityName} {itemName}?
+                    </b>
+                </Typography>
+                <br />
+                <Typography component="span">
                     פעולה זו לא ניתנת לביטול.
-                </p>
+                </Typography>
             </>
         ),
         confirmationText: 'מחק',
@@ -99,12 +104,10 @@ export const createInfoConfirmConfig = (MsgTitle, MsgDesc) => {
         // Optional: adjust dialog to be centered since there's only one button
         dialogProps: {
             ...createConfirmConfig({ type: 'info' }).dialogProps,
-            PaperProps: {
-                sx: {
-                    backgroundColor: ConfirmDialogColors.info.backgroundColor,
-                }
-            },
             sx: {
+                '& .MuiPaper-root': {
+                    backgroundColor: colors.backgroundColor,
+                },
                 '& .MuiDialogActions-root': {
                     justifyContent: 'center', // Center the single button
                 }

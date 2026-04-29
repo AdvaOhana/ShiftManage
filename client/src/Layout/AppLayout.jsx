@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'; // Add useState import
+import React, { useState, useMemo } from 'react';
 import Header from "./Header";
 import NavBar from "./NavBar";
 import Footer from "./Footer.jsx";
@@ -21,7 +21,8 @@ function AppLayout() {
     return (
         <Box sx={{
             display: 'grid',
-            minHeight: '100vh',
+            height: '100vh',
+            overflow: 'hidden',
             gridTemplateRows: `${HeaderHeight}px 1fr ${FooterHeight}px`,
             gridTemplateColumns: {
                 xs: '1fr',
@@ -41,26 +42,28 @@ function AppLayout() {
             }
         }}>
 
-            <Box sx={{
-                gridArea: 'header',
-                height: `${HeaderHeight}px`
-            }}>
+            <Box sx={{ gridArea: 'header' }}>
                 <Header onMenuClick={handleDrawerToggle} title={currentTitle} />
             </Box>
 
             <Box sx={{
                 gridArea: 'nav',
                 display: { xs: 'none', md: 'block' },
+                height: '100%',
+                overflow: 'hidden'
             }}>
                 <NavBar mobileOpen={mobileOpen} onClose={handleDrawerToggle} />
             </Box>
 
             <Box sx={{
                 gridArea: 'main',
-                overflow: 'auto',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
                 borderRight: `1px solid ${HeaderBgColor}`,
                 borderLeft: `1px solid ${HeaderBgColor}`,
-                p: 2
+                p: '20px 50px'
             }}>
                 <Outlet />
             </Box>
@@ -68,9 +71,7 @@ function AppLayout() {
             <Box sx={{
                 gridArea: 'footer',
                 height: `${FooterHeight}px`,
-                // display: 'flex',
-                // alignItems: 'center',
-                borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+                borderTop: '1px solid rgba(0, 0, 0, 0.12)'
             }}>
                 <Footer />
             </Box>

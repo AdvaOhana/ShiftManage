@@ -30,11 +30,13 @@ function App() {
       <ConfirmProvider
         defaultOptions={{
           dialogProps: {
-            PaperProps: {
-              sx: {
+
+            sx: {
+              '& .MuiPaper-root': {
                 borderRadius: '12px',
-              },
+              }
             }
+
           },
           confirmationButtonProps: {
             variant: 'contained',

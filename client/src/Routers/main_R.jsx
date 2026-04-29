@@ -1,9 +1,8 @@
 import React from "react";
 import { createBrowserRouter } from "react-router";
 import AppLayout from "../Layout/AppLayout.jsx";
-// import HomePage from "../_Features/HomePage/HomePage.jsx";
-// import CategsPage from "../_Features/Categories/CategsPage.jsx";
-// import ToDoPage from "../_Features/ToDo/ToDoPage.jsx";
+import AssignmentsPage from "../_Features/Assignments/AssignmentsPage.jsx";
+
 
 const router = createBrowserRouter([
     {
@@ -13,7 +12,7 @@ const router = createBrowserRouter([
             { path: "/employees", element: <div>עובדים</div>, handle: { title: "עובדים" } },
             { path: "/managers", element: <div>מנהלים</div>, handle: { title: "מנהלים" } },
             { path: "/shifts", element: <div>משמרות שלי</div>, handle: { title: "משמרות שלי" } },
-            { path: "/assignment", element: <div>שיבוץ</div>, handle: { title: "שיבוץ" } },
+            { path: "/assignment", element: <AssignmentsPage />, handle: { title: "שיבוץ" } },
             { path: "/scheduling", element: <div>סידור עבודה</div>, handle: { title: "סידור עבודה" } },
         ]
     },

@@ -2,14 +2,14 @@ import React from 'react';
 import {
     Drawer,
     List,
-    ListItem,
+    ListItemButton,
     ListItemIcon,
     ListItemText,
     Box,
     useTheme,
     useMediaQuery,
 } from '@mui/material';
-import { NavLink,useLocation } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 import { navItems } from '../Routers/main_R';
 import { menuWidth } from "../theme_params.jsx";
 
@@ -17,8 +17,8 @@ const NavBar = ({ mobileOpen, onClose }) => {
     const theme = useTheme();
     const location = useLocation();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    
-   
+
+
     // console.log(location.pathname);
     const drawerContent = (
         <Box sx={{ height: '100%' }}>
@@ -26,37 +26,36 @@ const NavBar = ({ mobileOpen, onClose }) => {
                 {navItems.map((item) => {
                     const isSelected = (location.pathname === item.path);
                     return (
-                        <ListItem
-                        button
-                        key={item.path}
-                        selected={location.pathname === item.path}
-                        component={NavLink}
-                        to={item.path}
-                        onClick={() => isMobile && onClose()}
-                        sx={{
-                            backgroundColor: isSelected ?
-                                theme.palette.nav.selected.background :
-                                theme.palette.nav.main,
-                            color: isSelected ?
-                                theme.palette.nav.selected.text :
-                                theme.palette.nav.text,
-                            '&:hover': {
-                                backgroundColor: theme.palette.nav.hover.background,
-                                color: theme.palette.nav.hover.text
-                            }
-                        }}
-                    >
-                        <ListItemIcon sx={{
-                            minWidth: 40,
-                            color: isSelected ?
-                                theme.palette.nav.selected.text :
-                                theme.palette.nav.text
+                        <ListItemButton
+                            key={item.path}
+                            selected={location.pathname === item.path}
+                            component={NavLink}
+                            to={item.path}
+                            onClick={() => isMobile && onClose()}
+                            sx={{
+                                backgroundColor: isSelected ?
+                                    theme.palette.nav.selected.background :
+                                    theme.palette.nav.main,
+                                color: isSelected ?
+                                    theme.palette.nav.selected.text :
+                                    theme.palette.nav.text,
+                                '&:hover': {
+                                    backgroundColor: theme.palette.nav.hover.background,
+                                    color: theme.palette.nav.hover.text
+                                }
+                            }}
+                        >
+                            <ListItemIcon sx={{
+                                minWidth: 40,
+                                color: isSelected ?
+                                    theme.palette.nav.selected.text :
+                                    theme.palette.nav.text
 
-                        }}>
-                            {item.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={item.name}/>
-                    </ListItem>
+                            }}>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.name} />
+                        </ListItemButton>
                     )
                 })}
             </List>

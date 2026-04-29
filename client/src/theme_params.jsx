@@ -1,9 +1,9 @@
 import { createTheme } from '@mui/material';
 
 const FontSizeMultiplier = 1.4;
-const menuWidth = 240;
-const HeaderHeight = 80;
-const FooterHeight = 60;
+const menuWidth = 200;
+const HeaderHeight = 50;
+const FooterHeight = 30;
 const black = "#000000";
 const HeaderBgColor = "#1c4f9b";
 const HeaderTxtColor = '#ffffff';
