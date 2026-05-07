@@ -8,6 +8,7 @@ import {
     Box,
     useTheme,
     useMediaQuery,
+    Typography
 } from '@mui/material';
 import { NavLink, useLocation } from 'react-router';
 import { navItems } from '../Routers/main_R';
@@ -18,45 +19,55 @@ const NavBar = ({ mobileOpen, onClose }) => {
     const location = useLocation();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-
-    // console.log(location.pathname);
     const drawerContent = (
-        <Box sx={{ height: '100%' }}>
-            <List component="nav" sx={{ height: '100%' }}>
+        <Box sx={{ height: '100%', p: 2 }}>
+            <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
+                תפריט
+            </Typography>
+
+            <List>
                 {navItems.map((item) => {
-                    const isSelected = (location.pathname === item.path);
+                    const isSelected = location.pathname === item.path;
+
                     return (
                         <ListItemButton
                             key={item.path}
-                            selected={location.pathname === item.path}
                             component={NavLink}
                             to={item.path}
+                            selected={isSelected}
                             onClick={() => isMobile && onClose()}
                             sx={{
-                                backgroundColor: isSelected ?
-                                    theme.palette.nav.selected.background :
-                                    theme.palette.nav.main,
-                                color: isSelected ?
-                                    theme.palette.nav.selected.text :
-                                    theme.palette.nav.text,
-                                '&:hover': {
-                                    backgroundColor: theme.palette.nav.hover.background,
-                                    color: theme.palette.nav.hover.text
-                                }
+                                borderRadius: 2,
+                                mb: 1,
+
+                                '&.Mui-selected': {
+                                    bgcolor: 'primary.main',
+                                    color: '#fff',
+
+                                    '&:hover': {
+                                        bgcolor: 'primary.dark',
+                                    },
+
+                                    '& .MuiListItemIcon-root': {
+                                        color: '#fff',
+                                    },
+                                },
                             }}
                         >
-                            <ListItemIcon sx={{
-                                minWidth: 40,
-                                color: isSelected ?
-                                    theme.palette.nav.selected.text :
-                                    theme.palette.nav.text
-
-                            }}>
+                            <ListItemIcon
+                                sx={{
+                                    color: isSelected
+                                        ? '#fff'
+                                        : theme.palette.text.primary,
+                                    minWidth: 40
+                                }}
+                            >
                                 {item.icon}
                             </ListItemIcon>
+
                             <ListItemText primary={item.name} />
                         </ListItemButton>
-                    )
+                    );
                 })}
             </List>
         </Box>
@@ -64,32 +75,29 @@ const NavBar = ({ mobileOpen, onClose }) => {
 
     return (
         <Box component="nav" sx={{ height: '100%' }}>
-            {/* Mobile Drawer */}
             <Drawer
-                anchor="left" // Add this line to make drawer open from right(because body has rtl)
+                anchor="left"
                 variant="temporary"
                 open={mobileOpen}
                 onClose={onClose}
-                ModalProps={{
-                    keepMounted: true,
-                }}
+                ModalProps={{ keepMounted: true }}
                 sx={{
                     display: { xs: 'block', md: 'none' },
                     '& .MuiDrawer-paper': {
                         width: menuWidth,
-                        backgroundColor: theme.palette.nav.main
+                        backgroundColor: theme.palette.background.paper,
                     },
                 }}
             >
                 {drawerContent}
             </Drawer>
 
-            {/* Desktop Drawer */}
             <Box
                 sx={{
                     display: { xs: 'none', md: 'block' },
                     height: '100%',
-                    backgroundColor: theme.palette.nav.main,
+                    borderLeft: `1px solid ${theme.palette.divider}`,
+                    backgroundColor: theme.palette.background.paper,
                 }}
             >
                 {drawerContent}

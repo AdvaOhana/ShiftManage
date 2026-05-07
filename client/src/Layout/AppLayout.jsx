@@ -48,7 +48,7 @@ function AppLayout() {
 
             <Box sx={{
                 gridArea: 'nav',
-                display: { xs: 'none', md: 'block' },
+                // display: { xs: 'none', md: 'block' },
                 height: '100%',
                 overflow: 'hidden'
             }}>

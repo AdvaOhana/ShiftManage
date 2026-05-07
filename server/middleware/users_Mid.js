@@ -33,7 +33,7 @@ async function AddUser(req, res, next) {
 
 async function GetAllUsers(req, res, next) {
 
-    let Query = `SELECT name,email,role,createdAt FROM ${tableName} ORDER BY name`;
+    let Query = `SELECT id,name,email,role,createdAt FROM ${tableName} ORDER BY name`;
 
     res.ok = false;
     res.err = "";

@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import {
-    AppBar, Toolbar, Typography, IconButton, useMediaQuery, useTheme, Box
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    useMediaQuery,
+    useTheme,
+    Box
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { HeaderHeight } from "../theme_params.jsx";
@@ -17,32 +23,24 @@ function Header({ onMenuClick, title }) {
         <AppBar
             position="static"
             sx={{
+                borderRadius: 0,
+                justifyContent: 'center',
                 height: `${HeaderHeight}px`,
-                '& .MuiToolbar-root': {
-                    height: `${HeaderHeight}px`,
-                    minHeight: `${HeaderHeight}px`
-                }
+                background: 'linear-gradient(135deg, #0F3460 0%, #2d2d44 100%)'
             }}
         >
-            <Toolbar>
+            <Toolbar sx={{ minHeight: `${HeaderHeight}px` }}>
                 {isMobile && (
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={onMenuClick}
-                        sx={{ mr: 2 }}
-                    >
+                    <IconButton color="inherit" onClick={onMenuClick}>
                         <MenuIcon />
                     </IconButton>
                 )}
-                <Typography variant="h6" component="h1" sx={{ pr: 3 }}>
+
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     {title}
                 </Typography>
 
-                {/* Spacer to push content to the edges */}
                 <Box sx={{ flexGrow: 1 }} />
-
             </Toolbar>
         </AppBar>
     );
